@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Your Cart</h2>
+    <div *ngIf="cartProducts$ | async as cartProducts; else emptyCart">
+      <div class="row" *ngFor="let product of cartProducts">
+        <div class="col-8">{{product.name}} ({{product.quantity}})</div>
+        <div class="col-2">{{product.price | currency}}</div>
+        <div class="col-2">{{product.price * product.quantity | currency}}</div>
+      </div>
+      <div class="row">
+        <div class="col-8">Total</div>
+        <div class="col-2"></div>
+        <div class="col-2">{{ getTotalPrice(cartProducts) | currency }}</div>
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <p>Your cart is empty.</p>
+    </ng-template>
+  </div>
+  
